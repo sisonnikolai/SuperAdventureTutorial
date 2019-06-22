@@ -1,0 +1,5 @@
+C:\Users\Nikolai\source\repos\SuperAdventuRE\SuperAdventuRE\obj\Debug\SuperAdventuRE.csprojAssemblyReference.cache
+C:\Users\Nikolai\source\repos\SuperAdventuRE\SuperAdventuRE\obj\Debug\SuperAdventuRE.SuperAdventure.resources
+C:\Users\Nikolai\source\repos\SuperAdventuRE\SuperAdventuRE\obj\Debug\SuperAdventuRE.Properties.Resources.resources
+C:\Users\Nikolai\source\repos\SuperAdventuRE\SuperAdventuRE\obj\Debug\SuperAdventuRE.csproj.GenerateResource.cache
+C:\Users\Nikolai\source\repos\SuperAdventuRE\SuperAdventuRE\obj\Debug\SuperAdventuRE.csproj.CoreCompileInputs.cache

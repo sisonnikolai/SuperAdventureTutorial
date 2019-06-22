@@ -1,0 +1,6 @@
+C:\Users\Nikolai\source\repos\SuperAdventuRE\Engine\bin\Debug\Engine.dll
+C:\Users\Nikolai\source\repos\SuperAdventuRE\Engine\bin\Debug\Engine.pdb
+C:\Users\Nikolai\source\repos\SuperAdventuRE\Engine\obj\Debug\Engine.csprojAssemblyReference.cache
+C:\Users\Nikolai\source\repos\SuperAdventuRE\Engine\obj\Debug\Engine.csproj.CoreCompileInputs.cache
+C:\Users\Nikolai\source\repos\SuperAdventuRE\Engine\obj\Debug\Engine.dll
+C:\Users\Nikolai\source\repos\SuperAdventuRE\Engine\obj\Debug\Engine.pdb

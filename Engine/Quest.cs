@@ -6,20 +6,19 @@ using System.Threading.Tasks;
 
 namespace Engine
 {
-    public class Monster : LivingCreature
+    public class Quest
     {
         public int ID { get; set; }
         public string Name { get; set; }
-        public int MaximumDamage { get; set; }
+        public string Description { get; set; }
         public int RewardExperiencePoints { get; set; }
         public int RewardGold { get; set; }
 
-        public Monster(int iD, string name, int maximumDamage, int rewardExperiencePoints, int rewardGold, int currentHitPoints, 
-            int maximumHitPoints) : base (currentHitPoints, maximumHitPoints)
+        public Quest(int iD, string name, string description, int rewardExperiencePoints, int rewardGold)
         {
             ID = iD;
             Name = name;
-            MaximumDamage = maximumDamage;
+            Description = description;
             RewardExperiencePoints = rewardExperiencePoints;
             RewardGold = rewardGold;
         }

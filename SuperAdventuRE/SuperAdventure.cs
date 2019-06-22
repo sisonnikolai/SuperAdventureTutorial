@@ -18,6 +18,8 @@ namespace SuperAdventuRE
         {
             InitializeComponent();
 
+            Location location = new Location(1, "Home", "This is your house");
+
             player = new Player();
             player.CurrentHitPoints = 10;
             player.MaximumHitPoints = 10;
