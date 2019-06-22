@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.421
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperAdventuRE", "SuperAdventuRE\SuperAdventuRE.csproj", "{72B30785-40F7-4D00-982C-9307C88B797C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Engine", "Engine\Engine.csproj", "{D9509D06-3708-4392-9D49-4FF7A01F31F3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{72B30785-40F7-4D00-982C-9307C88B797C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72B30785-40F7-4D00-982C-9307C88B797C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72B30785-40F7-4D00-982C-9307C88B797C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72B30785-40F7-4D00-982C-9307C88B797C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9509D06-3708-4392-9D49-4FF7A01F31F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9509D06-3708-4392-9D49-4FF7A01F31F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9509D06-3708-4392-9D49-4FF7A01F31F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9509D06-3708-4392-9D49-4FF7A01F31F3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9110048E-89AE-4A86-9CA9-CD83B8865E16}
+	EndGlobalSection
+EndGlobal
