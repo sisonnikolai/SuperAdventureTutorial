@@ -3,3 +3,11 @@ C:\Users\Nikolai\source\repos\SuperAdventuRE\SuperAdventuRE\obj\Debug\SuperAdven
 C:\Users\Nikolai\source\repos\SuperAdventuRE\SuperAdventuRE\obj\Debug\SuperAdventuRE.Properties.Resources.resources
 C:\Users\Nikolai\source\repos\SuperAdventuRE\SuperAdventuRE\obj\Debug\SuperAdventuRE.csproj.GenerateResource.cache
 C:\Users\Nikolai\source\repos\SuperAdventuRE\SuperAdventuRE\obj\Debug\SuperAdventuRE.csproj.CoreCompileInputs.cache
+C:\Users\Nikolai\source\repos\SuperAdventuRE\SuperAdventuRE\bin\Debug\SuperAdventuRE.exe.config
+C:\Users\Nikolai\source\repos\SuperAdventuRE\SuperAdventuRE\bin\Debug\SuperAdventuRE.exe
+C:\Users\Nikolai\source\repos\SuperAdventuRE\SuperAdventuRE\bin\Debug\SuperAdventuRE.pdb
+C:\Users\Nikolai\source\repos\SuperAdventuRE\SuperAdventuRE\bin\Debug\Engine.dll
+C:\Users\Nikolai\source\repos\SuperAdventuRE\SuperAdventuRE\bin\Debug\Engine.pdb
+C:\Users\Nikolai\source\repos\SuperAdventuRE\SuperAdventuRE\obj\Debug\SuperAdventuRE.csproj.CopyComplete
+C:\Users\Nikolai\source\repos\SuperAdventuRE\SuperAdventuRE\obj\Debug\SuperAdventuRE.exe
+C:\Users\Nikolai\source\repos\SuperAdventuRE\SuperAdventuRE\obj\Debug\SuperAdventuRE.pdb

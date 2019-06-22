@@ -20,12 +20,7 @@ namespace SuperAdventuRE
 
             Location location = new Location(1, "Home", "This is your house");
 
-            player = new Player();
-            player.CurrentHitPoints = 10;
-            player.MaximumHitPoints = 10;
-            player.Gold = 20;
-            player.ExperiencePoints = 0;
-            player.Level = 1;
+            player = new Player(10, 10, 20, 0, 1);
 
             lblHitPoints.Text = player.CurrentHitPoints.ToString();
             lblGold.Text = player.Gold.ToString();
