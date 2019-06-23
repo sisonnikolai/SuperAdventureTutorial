@@ -113,6 +113,7 @@
             this.btnWest.TabIndex = 37;
             this.btnWest.Text = "West";
             this.btnWest.UseVisualStyleBackColor = true;
+            this.btnWest.Click += new System.EventHandler(this.btnWest_Click);
             // 
             // btnSouth
             // 
@@ -122,6 +123,7 @@
             this.btnSouth.TabIndex = 36;
             this.btnSouth.Text = "South";
             this.btnSouth.UseVisualStyleBackColor = true;
+            this.btnSouth.Click += new System.EventHandler(this.btnSouth_Click);
             // 
             // btnEast
             // 
@@ -131,6 +133,7 @@
             this.btnEast.TabIndex = 35;
             this.btnEast.Text = "East";
             this.btnEast.UseVisualStyleBackColor = true;
+            this.btnEast.Click += new System.EventHandler(this.btnEast_Click);
             // 
             // btnNorth
             // 
@@ -140,6 +143,7 @@
             this.btnNorth.TabIndex = 34;
             this.btnNorth.Text = "North";
             this.btnNorth.UseVisualStyleBackColor = true;
+            this.btnNorth.Click += new System.EventHandler(this.btnNorth_Click);
             // 
             // btnUsePotion
             // 
@@ -252,7 +256,7 @@
             this.label1.TabIndex = 21;
             this.label1.Text = "Hit Points: ";
             // 
-            // Form1
+            // SuperAdventure
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -278,7 +282,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Name = "Form1";
+            this.Name = "SuperAdventure";
             this.Text = "MyGame";
             ((System.ComponentModel.ISupportInitialize)(this.dgvQuests)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvInventory)).EndInit();

@@ -27,5 +27,25 @@ namespace SuperAdventuRE
             lblExperience.Text = player.ExperiencePoints.ToString();
             lblLevel.Text = player.Level.ToString();
         }
+
+        private void btnNorth_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSouth_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnEast_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnWest_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

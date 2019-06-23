@@ -51,6 +51,7 @@ namespace Engine
 
         private static void PopulateItems()
         {
+            //inlining - created the value and added it to the list
             Items.Add(new Weapon(ITEM_ID_RUSTY_SWORD, "Rusty Sword of Powah", "Rusty ass swords", 0, 6));
             Items.Add(new Item(ITEM_ID_RAT_TAIL, "Rat tail", "Rat tails"));
             Items.Add(new Item(ITEM_ID_PIECE_OF_FUR, "Piece of fur", "Pieces of fur"));
@@ -73,7 +74,7 @@ namespace Engine
             snake.LootTable.Add(new LootItem(ItemByID(ITEM_ID_SNAKE_FANG), 75, false));
             snake.LootTable.Add(new LootItem(ItemByID(ITEM_ID_SNAKESKIN), 75, true));
 
-            Monster giantSpider = new Monster(MONSTER_ID_GIANT_SPIDER, "Tarantula", 20, 5, 40, 10, 10);
+            Monster giantSpider = new Monster(MONSTER_ID_GIANT_SPIDER, "Tarantula~", 20, 5, 40, 10, 10);
             giantSpider.LootTable.Add(new LootItem(ItemByID(ITEM_ID_SPIDER_FANG), 75, true));
             giantSpider.LootTable.Add(new LootItem(ItemByID(ITEM_ID_SPIDER_SILK), 25, false));
 
@@ -171,6 +172,8 @@ namespace Engine
             Locations.Add(spiderField);
         }
 
+        //the following codes that return null is generally not a good idea
+        //since the function is expecting an object returned
         private static Monster MonsterByID(int id)
         {
             foreach (Monster monster in Monsters)
