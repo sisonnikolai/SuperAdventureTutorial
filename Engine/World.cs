@@ -174,7 +174,7 @@ namespace Engine
 
         //the following codes that return null is generally not a good idea
         //since the function is expecting an object returned
-        private static Monster MonsterByID(int id)
+        public static Monster MonsterByID(int id)
         {
             foreach (Monster monster in Monsters)
             {
@@ -184,7 +184,7 @@ namespace Engine
             return null;
         }
 
-        private static Quest QuestByID(int id)
+        public static Quest QuestByID(int id)
         {
             foreach(Quest quest in Quests)
             {
