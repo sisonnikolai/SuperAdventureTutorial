@@ -162,6 +162,7 @@
             this.btnUseWeapon.TabIndex = 32;
             this.btnUseWeapon.Text = "Use";
             this.btnUseWeapon.UseVisualStyleBackColor = true;
+            this.btnUseWeapon.Click += new System.EventHandler(this.btnUseWeapon_Click);
             // 
             // cboPotions
             // 
