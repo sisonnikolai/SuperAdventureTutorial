@@ -90,7 +90,8 @@ namespace Engine
             clearAlchemistGarden.QuestCompletionItems.Add(new QuestCompletionItem(ItemByID(ITEM_ID_RAT_TAIL), 3));
             clearAlchemistGarden.RewardItem = ItemByID(ITEM_ID_HEALING_POTION);
 
-            Quest clearFarmersField = new Quest(QUEST_ID_CLEAR_FARMERS_FIELD, "Clear the farmer's field",               "Kill snakes in the farmer's field and bring back 3 snake fangs.You will receive an adventurer's pass and 20 gold pieces.", 20, 20);
+            Quest clearFarmersField = new Quest(QUEST_ID_CLEAR_FARMERS_FIELD, "Clear the farmer's field",
+               "Kill snakes in the farmer's field and bring back 3 snake fangs.You will receive an adventurer's pass and 20 gold pieces.", 20, 20);
             clearFarmersField.QuestCompletionItems.Add(new QuestCompletionItem(ItemByID(ITEM_ID_SNAKE_FANG), 3));
             clearFarmersField.RewardItem = ItemByID(ITEM_ID_ADVENTURER_PASS);
 
