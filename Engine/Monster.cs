@@ -25,5 +25,6 @@ namespace Engine
             RewardGold = rewardGold;
             LootTable = new List<LootItem>();
         }
+        
     }
 }
