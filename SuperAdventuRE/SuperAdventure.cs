@@ -8,21 +8,30 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace SuperAdventuRE
 {
     public partial class SuperAdventure : Form
     {
+        private const string PLAYER_DATA_FILE_NAME = "PlayerData.xml";
         private Player player;
         private Monster currentMonster;
 
         public SuperAdventure()
         {
             InitializeComponent();
-            
-            player = new Player(10, 10, 20, 0);
-            MoveTo(World.LocationByID(World.LOCATION_ID_HOME));
-            player.Inventory.Add(new InventoryItem(World.ItemByID(World.ITEM_ID_RUSTY_SWORD), 1));
+
+            if (File.Exists(PLAYER_DATA_FILE_NAME))
+            {
+                player = Player.CreatePlayerFromXmlString(File.ReadAllText(PLAYER_DATA_FILE_NAME));
+            }
+            else
+            {
+                player = Player.CreateDefaultPlayer();
+            }
+
+            MoveTo(player.CurrentLocation);
 
             UpdatePlayerStats();
         }
@@ -124,7 +133,7 @@ namespace SuperAdventuRE
                     rtbMessages.Text += Environment.NewLine;
 
                     //Add the quest to the player's quest list
-                    player.Quests.Add(new PlayerQuest(newLocation.QuestAvailableHere, false));
+                    player.Quests.Add(new PlayerQuest(newLocation.QuestAvailableHere));
                 }
 
             }
@@ -450,6 +459,11 @@ namespace SuperAdventuRE
             lblExperience.Text = player.ExperiencePoints.ToString();
             lblLevel.Text = player.Level.ToString();
             
+        }
+
+        private void SuperAdventure_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            File.WriteAllText(PLAYER_DATA_FILE_NAME, player.ToXmlString());
         }
     }
 }
