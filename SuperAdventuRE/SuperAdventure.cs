@@ -20,14 +20,11 @@ namespace SuperAdventuRE
         {
             InitializeComponent();
             
-            player = new Player(10, 10, 20, 0, 1);
+            player = new Player(10, 10, 20, 0);
             MoveTo(World.LocationByID(World.LOCATION_ID_HOME));
             player.Inventory.Add(new InventoryItem(World.ItemByID(World.ITEM_ID_RUSTY_SWORD), 1));
 
-            lblHitPoints.Text = player.CurrentHitPoints.ToString();
-            lblGold.Text = player.Gold.ToString();
-            lblExperience.Text = player.ExperiencePoints.ToString();
-            lblLevel.Text = player.Level.ToString();
+            UpdatePlayerStats();
         }
 
         private void MoveTo(Location newLocation)
@@ -363,12 +360,7 @@ namespace SuperAdventuRE
                     else
                         rtbMessages.Text += $"You looted {inventoryItem.Quantity} {inventoryItem.Details.NamePlural}." + Environment.NewLine;
                 }
-                
-                //Refresh player info and inventory controls
-                lblHitPoints.Text = player.CurrentHitPoints.ToString();
-                lblGold.Text = player.Gold.ToString();
-                lblExperience.Text = player.ExperiencePoints.ToString();
-                lblLevel.Text = player.Level.ToString();
+                UpdatePlayerStats();
 
                 UpdateInventoryListInUI();
                 UpdateWeaponListInUI();
@@ -384,7 +376,6 @@ namespace SuperAdventuRE
             {
                 //Monster is still alive
                 EnemyAttack();
-                
             }
         }
 
@@ -449,6 +440,16 @@ namespace SuperAdventuRE
             
             //Refresh player data UI
             lblHitPoints.Text = player.CurrentHitPoints.ToString();
+        }
+
+        private void UpdatePlayerStats()
+        {
+            //Refresh player info and inventory controls
+            lblHitPoints.Text = player.CurrentHitPoints.ToString();
+            lblGold.Text = player.Gold.ToString();
+            lblExperience.Text = player.ExperiencePoints.ToString();
+            lblLevel.Text = player.Level.ToString();
+            
         }
     }
 }
