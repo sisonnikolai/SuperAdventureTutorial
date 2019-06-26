@@ -98,7 +98,7 @@ namespace SuperAdventuRE
                             rtbMessages.Text += newLocation.QuestAvailableHere.RewardItem.Name + Environment.NewLine;
                             rtbMessages.Text += Environment.NewLine;
 
-                            player.ExperiencePoints += newLocation.QuestAvailableHere.RewardExperiencePoints;
+                            player.AddExperiencePoints(newLocation.QuestAvailableHere.RewardExperiencePoints);
                             player.Gold += newLocation.QuestAvailableHere.RewardGold;
 
                             //Add reward item to player inventory
@@ -338,7 +338,7 @@ namespace SuperAdventuRE
                 rtbMessages.Text += Environment.NewLine;
                 rtbMessages.Text += $"You have defeated the {currentMonster.Name}." + Environment.NewLine;
 
-                player.ExperiencePoints += currentMonster.RewardExperiencePoints;
+                player.AddExperiencePoints(currentMonster.RewardExperiencePoints);
                 rtbMessages.Text += $"You received {currentMonster.RewardExperiencePoints} experience points." + Environment.NewLine;
 
                 player.Gold += currentMonster.RewardGold;
