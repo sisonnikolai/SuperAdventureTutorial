@@ -241,11 +241,18 @@ namespace SuperAdventuRE
             }
             else
             {
+                cboWeapons.SelectedIndexChanged -= cboWeapons_SelectedIndexChange;
                 cboWeapons.DataSource = weapons;
+                cboWeapons.SelectedIndexChanged += cboWeapons_SelectedIndexChange;
                 cboWeapons.DisplayMember = "Name";
                 cboWeapons.ValueMember = "ID";
 
-                cboWeapons.SelectedIndex = 0;
+                if(player.CurrentWeapon != null)
+                {
+                    cboWeapons.SelectedItem = player.CurrentWeapon;
+                }
+                else
+                    cboWeapons.SelectedIndex = 0;
             }
         }
 
@@ -445,6 +452,8 @@ namespace SuperAdventuRE
 
                 //Move player back to 'Home'
                 MoveTo(World.LocationByID(World.LOCATION_ID_HOME));
+
+                MessageBox.Show("YOU DIED", "DEAD");
             }
             
             //Refresh player data UI
@@ -464,6 +473,11 @@ namespace SuperAdventuRE
         private void SuperAdventure_FormClosing(object sender, FormClosingEventArgs e)
         {
             File.WriteAllText(PLAYER_DATA_FILE_NAME, player.ToXmlString());
+        }
+
+        private void cboWeapons_SelectedIndexChange(object sender, EventArgs e)
+        {
+            player.CurrentWeapon = (Weapon)cboWeapons.SelectedItem;
         }
     }
 }
