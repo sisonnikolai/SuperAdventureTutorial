@@ -37,6 +37,44 @@ namespace SuperAdventuRE
             lblExperience.DataBindings.Add("Text", player, "ExperiencePoints");
             lblLevel.DataBindings.Add("Text", player, "Level");
 
+            //Data Bindings for Inventory
+            dgvInventory.RowHeadersVisible = false;
+            dgvInventory.AutoGenerateColumns = false;
+
+            dgvInventory.DataSource = player.Inventory;
+
+            dgvInventory.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Name",
+                Width = 197,
+                DataPropertyName = "Description"
+            });
+
+            dgvInventory.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Quantity",
+                DataPropertyName = "Quantity"
+            });
+
+            //Data Bindings for Quest List
+            dgvQuests.RowHeadersVisible = false;
+            dgvQuests.AutoGenerateColumns = false;
+
+            dgvQuests.DataSource = player.Quests;
+
+            dgvQuests.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Name",
+                Width = 197,
+                DataPropertyName = "Name"
+            });
+
+            dgvQuests.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Done?",
+                DataPropertyName = "IsCompleted"
+            });
+
             MoveTo(player.CurrentLocation);
             
         }
@@ -173,56 +211,13 @@ namespace SuperAdventuRE
                 btnUseWeapon.Visible = false;
                 btnUsePotion.Visible = false;
             }
-            //Refresh inventory list
-            UpdateInventoryListInUI();
-
-            //Refresh quest list
-            UpdateQuestListInUI();
-
             //Refresh weapon combobox
             UpdateWeaponListInUI();
 
             //Refresh potion combobox
             UpdatePotionListInUI();
         }
-
-        private void UpdateInventoryListInUI()
-        {
-            dgvInventory.RowHeadersVisible = false;
-
-            dgvInventory.ColumnCount = 2;
-            dgvInventory.Columns[0].Name = "Name";
-            dgvInventory.Columns[0].Width = 197;
-            dgvInventory.Columns[1].Name = "Quantity";
-
-            dgvInventory.Rows.Clear();
-
-            foreach (InventoryItem inventoryItem in player.Inventory)
-            {
-                if (inventoryItem.Quantity > 0)
-                {
-                    dgvInventory.Rows.Add(new[] { inventoryItem.Details.Name, inventoryItem.Quantity.ToString() });
-                }
-            }
-        }
-
-        private void UpdateQuestListInUI()
-        {
-            dgvQuests.RowHeadersVisible = false;
-
-            dgvQuests.ColumnCount = 2;
-            dgvQuests.Columns[0].Name = "Name";
-            dgvQuests.Columns[0].Width = 197;
-            dgvQuests.Columns[1].Name = "Done?";
-
-            dgvQuests.Rows.Clear();
-
-            foreach (PlayerQuest playerQuest in player.Quests)
-            {
-                dgvQuests.Rows.Add(new[] { playerQuest.Details.Name, playerQuest.IsCompleted.ToString() });
-            }
-        }
-
+        
         private void UpdateWeaponListInUI()
         {
             List<Weapon> weapons = new List<Weapon>();
@@ -311,11 +306,7 @@ namespace SuperAdventuRE
         {
             MoveTo(player.CurrentLocation.LocationToWest);
         }
-
-        private void SuperAdventure_Load(object sender, EventArgs e)
-        {
-        }
-
+        
         private void btnUseWeapon_Click(object sender, EventArgs e)
         {
             //Get the current selected weapon from the Weapons combobox
@@ -382,8 +373,6 @@ namespace SuperAdventuRE
                     else
                         rtbMessages.Text += $"You looted {inventoryItem.Quantity} {inventoryItem.Details.NamePlural}." + Environment.NewLine;
                 }
-
-                UpdateInventoryListInUI();
                 UpdateWeaponListInUI();
                 UpdatePotionListInUI();
 
@@ -428,8 +417,7 @@ namespace SuperAdventuRE
 
             //Monster gets their turn to attack
             EnemyAttack();
-
-            UpdateInventoryListInUI();
+            
             UpdatePotionListInUI();
             
         }
@@ -460,18 +448,6 @@ namespace SuperAdventuRE
 
                 MessageBox.Show("YOU DIED", "DEAD");
             }
-            
-            //Refresh player data UI
-        }
-
-        private void UpdatePlayerStats()
-        {
-            //Refresh player info and inventory controls
-            lblHitPoints.Text = player.CurrentHitPoints.ToString();
-            lblGold.Text = player.Gold.ToString();
-            lblExperience.Text = player.ExperiencePoints.ToString();
-            lblLevel.Text = player.Level.ToString();
-            
         }
 
         private void SuperAdventure_FormClosing(object sender, FormClosingEventArgs e)
