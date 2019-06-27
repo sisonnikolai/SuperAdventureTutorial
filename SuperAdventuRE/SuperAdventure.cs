@@ -31,9 +31,14 @@ namespace SuperAdventuRE
                 player = Player.CreateDefaultPlayer();
             }
 
-            MoveTo(player.CurrentLocation);
+            //DataBindings - The databinding will connect to the Text property of labels to the following properties of the player object
+            lblHitPoints.DataBindings.Add("Text", player, "CurrentHitPoints");
+            lblGold.DataBindings.Add("Text", player, "Gold");
+            lblExperience.DataBindings.Add("Text", player, "ExperiencePoints");
+            lblLevel.DataBindings.Add("Text", player, "Level");
 
-            UpdatePlayerStats();
+            MoveTo(player.CurrentLocation);
+            
         }
 
         private void MoveTo(Location newLocation)
@@ -63,7 +68,6 @@ namespace SuperAdventuRE
             player.CurrentHitPoints = player.MaximumHitPoints;
 
             //Update Hit Points in UI
-            lblHitPoints.Text = player.CurrentHitPoints.ToString();
 
             //Does the location have a quest?
             if (newLocation.QuestAvailableHere != null)
@@ -99,6 +103,7 @@ namespace SuperAdventuRE
                             rtbMessages.Text += Environment.NewLine;
 
                             player.AddExperiencePoints(newLocation.QuestAvailableHere.RewardExperiencePoints);
+
                             player.Gold += newLocation.QuestAvailableHere.RewardGold;
 
                             //Add reward item to player inventory
@@ -339,6 +344,7 @@ namespace SuperAdventuRE
                 rtbMessages.Text += $"You have defeated the {currentMonster.Name}." + Environment.NewLine;
 
                 player.AddExperiencePoints(currentMonster.RewardExperiencePoints);
+
                 rtbMessages.Text += $"You received {currentMonster.RewardExperiencePoints} experience points." + Environment.NewLine;
 
                 player.Gold += currentMonster.RewardGold;
@@ -376,7 +382,6 @@ namespace SuperAdventuRE
                     else
                         rtbMessages.Text += $"You looted {inventoryItem.Quantity} {inventoryItem.Details.NamePlural}." + Environment.NewLine;
                 }
-                UpdatePlayerStats();
 
                 UpdateInventoryListInUI();
                 UpdateWeaponListInUI();
@@ -457,7 +462,6 @@ namespace SuperAdventuRE
             }
             
             //Refresh player data UI
-            lblHitPoints.Text = player.CurrentHitPoints.ToString();
         }
 
         private void UpdatePlayerStats()
