@@ -31,7 +31,7 @@ namespace SuperAdventuRE
                 player = Player.CreateDefaultPlayer();
             }
 
-            //DataBindings - The databinding will connect to the Text property of labels to the following properties of the player object
+            //DataBindings - The databinding will connect to the Text property of the labels to the following properties of the player object
             lblHitPoints.DataBindings.Add("Text", player, "CurrentHitPoints");
             lblGold.DataBindings.Add("Text", player, "Gold");
             lblExperience.DataBindings.Add("Text", player, "ExperiencePoints");
