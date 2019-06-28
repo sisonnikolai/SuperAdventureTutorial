@@ -69,8 +69,9 @@ namespace Engine
         {
             get { return Inventory.Where(x => x.Details is HealingPotion).Select(x => x.Details as HealingPotion).ToList(); }
         }
-
         #endregion
+
+        public event EventHandler<MessageEventArgs> OnMessage;
 
         //CONSTRUCTOR
         private Player(int currentHitPoints, int maximumHitPoints, int gold, int experiencePoints) : base (currentHitPoints
@@ -353,8 +354,8 @@ namespace Engine
             //Does the location have any required items
             if (!HasRequiredItemToEnterThisLocation(newLocation))
             {
-                rtbMessages.Text += $"You must have a {newLocation.ItemRequiredToEnter.Name} to enter this location." +
-                    Environment.NewLine;
+                RaiseMessage($"You must have a {newLocation.ItemRequiredToEnter.Name} to enter this location." +
+                    Environment.NewLine);
                 return;
             }
 
@@ -387,17 +388,17 @@ namespace Engine
                         if (playerHasAllItemsToCompleteQuest)
                         {
                             //Display message
-                            rtbMessages.Text += Environment.NewLine;
-                            rtbMessages.Text += $"You completed the {newLocation.QuestAvailableHere.Name} quest." + Environment.NewLine;
+                            RaiseMessage(Environment.NewLine);
+                            RaiseMessage($"You completed the {newLocation.QuestAvailableHere.Name} quest." + Environment.NewLine);
 
                             RemoveQuestCompletionItems(newLocation.QuestAvailableHere);
 
                             //Give quest rewards
-                            rtbMessages.Text += "You receive " + Environment.NewLine;
-                            rtbMessages.Text += $"{newLocation.QuestAvailableHere.RewardExperiencePoints} experience points" + Environment.NewLine;
-                            rtbMessages.Text += $"{newLocation.QuestAvailableHere.RewardGold} gold" + Environment.NewLine;
-                            rtbMessages.Text += newLocation.QuestAvailableHere.RewardItem.Name + Environment.NewLine;
-                            rtbMessages.Text += Environment.NewLine;
+                            RaiseMessage("You receive " + Environment.NewLine);
+                            RaiseMessage($"{newLocation.QuestAvailableHere.RewardExperiencePoints} experience points" + Environment.NewLine);
+                            RaiseMessage($"{newLocation.QuestAvailableHere.RewardGold} gold" + Environment.NewLine);
+                            RaiseMessage(newLocation.QuestAvailableHere.RewardItem.Name + Environment.NewLine);
+                            RaiseMessage(Environment.NewLine);
 
                             AddExperiencePoints(newLocation.QuestAvailableHere.RewardExperiencePoints);
 
@@ -416,23 +417,23 @@ namespace Engine
                     //The player does not have the quest
 
                     //Display the messages
-                    rtbMessages.Text += $"You receive the {newLocation.QuestAvailableHere.Name} quest." + Environment.NewLine;
-                    rtbMessages.Text += newLocation.QuestAvailableHere.Description + Environment.NewLine;
-                    rtbMessages.Text += "To complete it, return with " + Environment.NewLine;
+                    RaiseMessage($"You receive the {newLocation.QuestAvailableHere.Name} quest." + Environment.NewLine);
+                    RaiseMessage(newLocation.QuestAvailableHere.Description + Environment.NewLine);
+                    RaiseMessage("To complete it, return with " + Environment.NewLine);
 
                     foreach (QuestCompletionItem qci in newLocation.QuestAvailableHere.QuestCompletionItems)
                     {
                         if (qci.Quantity == 1)
                         {
-                            rtbMessages.Text += $"{qci.Quantity} {qci.Details.Name}" + Environment.NewLine;
+                            RaiseMessage($"{qci.Quantity} {qci.Details.Name}" + Environment.NewLine);
                         }
                         else
                         {
-                            rtbMessages.Text += $"{qci.Quantity} {qci.Details.NamePlural}" + Environment.NewLine;
+                            RaiseMessage($"{qci.Quantity} {qci.Details.NamePlural}" + Environment.NewLine);
                         }
                     }
 
-                    rtbMessages.Text += Environment.NewLine;
+                    RaiseMessage(Environment.NewLine);
 
                     //Add the quest to the player's quest list
                     Quests.Add(new PlayerQuest(newLocation.QuestAvailableHere));
@@ -442,7 +443,7 @@ namespace Engine
             //Does the location have a monster?
             if (newLocation.MonsterLivingHere != null)
             {
-                rtbMessages.Text += $"You see a {newLocation.MonsterLivingHere.Name}" + Environment.NewLine;
+                RaiseMessage($"You see a {newLocation.MonsterLivingHere.Name}" + Environment.NewLine);
 
                 //Make a new monster, using the values from the standard monster in the World.Monster list
                 Monster standardMonster = World.MonsterByID(newLocation.MonsterLivingHere.ID);
@@ -588,6 +589,14 @@ namespace Engine
         private void MoveHome()
         {
             MoveTo(World.LocationByID(World.LOCATION_ID_HOME));
+        }
+
+        private void RaiseMessage(string message, bool addExtraNewLine = false)
+        {
+            if(OnMessage != null)
+            {
+                OnMessage(this, new MessageEventArgs(message, addExtraNewLine));
+            }
         }
         #endregion
     }

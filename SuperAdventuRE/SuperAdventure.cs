@@ -89,9 +89,21 @@ namespace SuperAdventuRE
             cboPotions.ValueMember = "Id";
 
             player.PropertyChanged += PlayerOnPropertyChanged;
+            player.OnMessage += DisplayMessage;
+            Monster.OnMessage += DisplayMessage;
 
-            MoveTo(player.CurrentLocation);
+            player.MoveTo(player.CurrentLocation);
             
+        }
+
+        private void DisplayMessage(object sender, MessageEventArgs messageEventArgs)
+        {
+            rtbMessages.Text += messageEventArgs.Message + Environment.NewLine;
+
+            if(messageEventArgs.AddExtraNewLine)
+            {
+                rtbMessages.Text += Environment.NewLine;
+            }
         }
 
         private void PlayerOnPropertyChanged(object sender, PropertyChangedEventArgs propertyChangedEventArgs)
