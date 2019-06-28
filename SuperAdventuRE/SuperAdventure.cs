@@ -75,8 +75,47 @@ namespace SuperAdventuRE
                 DataPropertyName = "IsCompleted"
             });
 
+            //Data Bindings for Weapon & Potion combo boxes
+            cboWeapons.DataSource = player.Weapons;
+            cboWeapons.DisplayMember = "Name";
+            cboWeapons.ValueMember = "Id";
+
+            if (player.CurrentWeapon != null)
+                cboWeapons.SelectedItem = player.CurrentWeapon;
+
+            cboWeapons.SelectedIndexChanged += cboWeapons_SelectedIndexChange;
+
+            cboPotions.DataSource = player.Potions;
+            cboPotions.DisplayMember = "Name";
+            cboPotions.ValueMember = "Id";
+
+            player.PropertyChanged += PlayerOnPropertyChanged;
+
             MoveTo(player.CurrentLocation);
             
+        }
+
+        private void PlayerOnPropertyChanged(object sender, PropertyChangedEventArgs propertyChangedEventArgs)
+        {
+            if (propertyChangedEventArgs.PropertyName == "Weapons")
+            {
+                cboWeapons.DataSource = player.Weapons;
+                if (!player.Weapons.Any())
+                {
+                    cboWeapons.Visible = false;
+                    btnUseWeapon.Visible = false;
+                }
+            }
+
+            if (propertyChangedEventArgs.PropertyName == "Potions")
+            {
+                cboPotions.DataSource = player.Potions;
+                if (!player.Potions.Any())
+                {
+                    cboPotions.Visible = false;
+                    btnUsePotion.Visible = false;
+                }
+            }
         }
 
         private void MoveTo(Location newLocation)
@@ -196,94 +235,20 @@ namespace SuperAdventuRE
                     currentMonster.LootTable.Add(lootItem);
                 }
 
-                cboWeapons.Visible = true;
-                cboPotions.Visible = true;
-                btnUseWeapon.Visible = true;
-                btnUsePotion.Visible = true;
+                cboWeapons.Visible = player.Weapons.Any();
+                cboPotions.Visible = player.Potions.Any();
+                btnUseWeapon.Visible = player.Weapons.Any();
+                btnUsePotion.Visible = player.Potions.Any();
             }
 
             else
             {
                 currentMonster = null;
 
-                cboWeapons.Visible = false;
-                cboPotions.Visible = false;
-                btnUseWeapon.Visible = false;
-                btnUsePotion.Visible = false;
-            }
-            //Refresh weapon combobox
-            UpdateWeaponListInUI();
-
-            //Refresh potion combobox
-            UpdatePotionListInUI();
-        }
-        
-        private void UpdateWeaponListInUI()
-        {
-            List<Weapon> weapons = new List<Weapon>();
-
-            foreach (InventoryItem inventoryItem in player.Inventory)
-            {
-                if (inventoryItem.Details is Weapon)
-                {
-                    if (inventoryItem.Quantity > 0)
-                    {
-                        weapons.Add((Weapon)inventoryItem.Details);
-                    }
-                }
-            }
-
-            if (weapons.Count == 0)
-            {
-                //The player doesn't have weapons, so hide the weapon combobox and 'Use' button
-                cboWeapons.Visible = false;
-                btnUseWeapon.Visible = false;
-            }
-            else
-            {
-                cboWeapons.SelectedIndexChanged -= cboWeapons_SelectedIndexChange;
-                cboWeapons.DataSource = weapons;
-                cboWeapons.SelectedIndexChanged += cboWeapons_SelectedIndexChange;
-                cboWeapons.DisplayMember = "Name";
-                cboWeapons.ValueMember = "ID";
-
-                if(player.CurrentWeapon != null)
-                {
-                    cboWeapons.SelectedItem = player.CurrentWeapon;
-                }
-                else
-                    cboWeapons.SelectedIndex = 0;
-            }
-        }
-
-        private void UpdatePotionListInUI()
-        {
-            List<HealingPotion> healingPotions = new List<HealingPotion>();
-
-            foreach (InventoryItem inventoryItem in player.Inventory)
-            {
-                if (inventoryItem.Details is HealingPotion)
-                {
-                    if (inventoryItem.Quantity > 0)
-                    {
-                        healingPotions.Add((HealingPotion)inventoryItem.Details);
-                    }
-                }
-            }
-
-            if (healingPotions.Count == 0)
-            {
-                //The player doesn't have weapons, so hide the weapon combobox and 'Use' button
-                cboPotions.Visible = false;
-                btnUsePotion.Visible = false;
-            }
-            else
-            {
-                cboPotions.DataSource = healingPotions;
-                cboPotions.DisplayMember = "Name";
-                cboPotions.ValueMember = "ID";
-
-                cboPotions.SelectedIndex = 0;
+                cboWeapons.Visible = player.Weapons.Any();
+                cboPotions.Visible = player.Potions.Any();
+                btnUseWeapon.Visible = player.Weapons.Any();
+                btnUsePotion.Visible = player.Potions.Any();
             }
         }
         
@@ -373,9 +338,6 @@ namespace SuperAdventuRE
                     else
                         rtbMessages.Text += $"You looted {inventoryItem.Quantity} {inventoryItem.Details.NamePlural}." + Environment.NewLine;
                 }
-                UpdateWeaponListInUI();
-                UpdatePotionListInUI();
-
                 //Adds a blank line for appearance
                 rtbMessages.Text += Environment.NewLine;
 
@@ -404,22 +366,13 @@ namespace SuperAdventuRE
             }
 
             //Remove the potion from player inventory
-            foreach(InventoryItem inventoryItem in player.Inventory)
-            {
-                if(inventoryItem.Details.ID == potion.ID)
-                {
-                    inventoryItem.Quantity--;
-                    break;
-                }
-            }
+            player.RemoveItemFromInventory(potion, 1);
+
             //Display message
             rtbMessages.Text += $"You used a {potion.Name}." + Environment.NewLine;
 
             //Monster gets their turn to attack
             EnemyAttack();
-            
-            UpdatePotionListInUI();
-            
         }
 
         private void rtbMessages_TextChanged(object sender, EventArgs e)
