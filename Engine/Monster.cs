@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace Engine
 {
     public class Monster : LivingCreature
@@ -26,5 +27,26 @@ namespace Engine
             LootTable = new List<LootItem>();
         }
         
+        public void EnemyAttack(Player player)
+        {
+            //Determine the amount of damage the monster does to the player
+            int damageToPlayer = RandomNumberGenerator.NumberBetween(0, MaximumDamage);
+
+            //Display message
+            rtbMessages.Text += $"The {Name} deals {damageToPlayer} points of damage." + Environment.NewLine;
+
+            //Subtract damage from player
+            player.CurrentHitPoints -= damageToPlayer;
+
+            if (player.CurrentHitPoints <= 0)
+            {
+                rtbMessages.Text += $"The fucking {currentMonster.Name} killed your weak ass." + Environment.NewLine;
+
+                //Move player back to 'Home'
+                player.MoveTo(World.LocationByID(World.LOCATION_ID_HOME));
+
+                MessageBox.Show("YOU DIED", "DEAD");
+            }
+        }
     }
 }
