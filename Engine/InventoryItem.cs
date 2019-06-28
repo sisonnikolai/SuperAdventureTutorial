@@ -9,8 +9,11 @@ namespace Engine
 {
     public class InventoryItem : INotifyPropertyChanged
     {
+        //fields
         private Item details;
         private int quantity;
+
+        #region Properties
         public Item Details
         {
             get { return details; }
@@ -37,6 +40,18 @@ namespace Engine
                 return Quantity > 1 ? Details.NamePlural : Details.Name;
             }
         }
+
+        public int ItemId
+        {
+            get { return Details.ID; }
+        }
+
+        public int Price
+        {
+            get { return Details.Price; }
+        }
+
+        #endregion
 
         public InventoryItem(Item details, int quantity)
         {

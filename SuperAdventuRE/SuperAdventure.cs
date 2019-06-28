@@ -135,10 +135,11 @@ namespace SuperAdventuRE
                 btnSouth.Visible = (player.CurrentLocation.LocationToSouth != null);
                 btnEast.Visible = (player.CurrentLocation.LocationToEast != null);
                 btnWest.Visible = (player.CurrentLocation.LocationToWest != null);
+                btnTrade.Visible = (player.CurrentLocation.VendorPresent != null);
 
                 //Display the current location name and description
                 rtbLocation.Text = player.CurrentLocation.Name + Environment.NewLine;
-                rtbLocation.Text = player.CurrentLocation.Description + Environment.NewLine;
+                rtbLocation.Text += player.CurrentLocation.Description + Environment.NewLine;
 
                 if(player.CurrentLocation.MonsterLivingHere == null)
                 {
@@ -205,6 +206,13 @@ namespace SuperAdventuRE
         private void cboWeapons_SelectedIndexChange(object sender, EventArgs e)
         {
             player.CurrentWeapon = (Weapon)cboWeapons.SelectedItem;
+        }
+
+        private void btnTrade_Click(object sender, EventArgs e)
+        {
+            TradingScreen tradingScreen = new TradingScreen(player);
+            tradingScreen.StartPosition = FormStartPosition.CenterParent;
+            tradingScreen.ShowDialog(this);
         }
     }
 }

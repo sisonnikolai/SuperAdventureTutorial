@@ -11,3 +11,4 @@ C:\Users\Nikolai\source\repos\SuperAdventuRE\SuperAdventuRE\bin\Debug\Engine.pdb
 C:\Users\Nikolai\source\repos\SuperAdventuRE\SuperAdventuRE\obj\Debug\SuperAdventuRE.csproj.CopyComplete
 C:\Users\Nikolai\source\repos\SuperAdventuRE\SuperAdventuRE\obj\Debug\SuperAdventuRE.exe
 C:\Users\Nikolai\source\repos\SuperAdventuRE\SuperAdventuRE\obj\Debug\SuperAdventuRE.pdb
+C:\Users\Nikolai\source\repos\SuperAdventuRE\SuperAdventuRE\obj\Debug\SuperAdventuRE.TradingScreen.resources

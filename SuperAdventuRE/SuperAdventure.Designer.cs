@@ -49,6 +49,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnTrade = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvQuests)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvInventory)).BeginInit();
             this.SuspendLayout();
@@ -69,6 +70,16 @@
             this.dgvQuests.RowTemplate.Height = 24;
             this.dgvQuests.Size = new System.Drawing.Size(312, 189);
             this.dgvQuests.TabIndex = 41;
+            //
+            // btnTrade
+            //
+            this.btnTrade.Location = new System.Drawing.Point(493, 620);
+            this.btnTrade.Name = "btnTrade";
+            this.btnTrade.Size = new System.Drawing.Size(75, 23);
+            this.btnTrade.TabIndex = 21;
+            this.btnTrade.Text = "Trade";
+            this.btnTrade.UseVisualStyleBackColor = true;
+            this.btnTrade.Click += new System.EventHandler(this.btnTrade_Click);
             // 
             // dgvInventory
             // 
@@ -285,6 +296,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.btnTrade);
             this.MaximizeBox = false;
             this.Name = "SuperAdventure";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -310,6 +322,7 @@
         private System.Windows.Forms.Button btnNorth;
         private System.Windows.Forms.Button btnUsePotion;
         private System.Windows.Forms.Button btnUseWeapon;
+        private System.Windows.Forms.Button btnTrade;
         private System.Windows.Forms.ComboBox cboPotions;
         private System.Windows.Forms.ComboBox cboWeapons;
         private System.Windows.Forms.Label label5;

@@ -41,6 +41,8 @@ namespace Engine
         public const int LOCATION_ID_BRIDGE = 8;
         public const int LOCATION_ID_SPIDER_FIELD = 9;
 
+        public const int UNSELLABLE_ITEM_PRICE = -1;
+
         static World()
         {
             PopulateItems();
@@ -52,16 +54,16 @@ namespace Engine
         private static void PopulateItems()
         {
             //inlining - created the value and added it to the list
-            Items.Add(new Weapon(ITEM_ID_RUSTY_SWORD, "Rusty Sword of Powah", "Rusty ass swords", 0, 6));
-            Items.Add(new Item(ITEM_ID_RAT_TAIL, "Rat tail", "Rat tails"));
-            Items.Add(new Item(ITEM_ID_PIECE_OF_FUR, "Piece of fur", "Pieces of fur"));
-            Items.Add(new Item(ITEM_ID_SNAKE_FANG, "Snake fang", "Snake fangs"));
-            Items.Add(new Item(ITEM_ID_SNAKESKIN, "Snakeskin", "Snakeskins"));
-            Items.Add(new Weapon(ITEM_ID_CLUB, "Superclub", "Superclubs", 3, 10));
-            Items.Add(new HealingPotion(ITEM_ID_HEALING_POTION, "Healing Potion", "Healing Potions", 5));
-            Items.Add(new Item(ITEM_ID_SPIDER_FANG, "Spider fang", "Spider fangs"));
-            Items.Add(new Item(ITEM_ID_SPIDER_SILK, "Spider silk", "Spider silks"));
-            Items.Add(new Item(ITEM_ID_ADVENTURER_PASS, "Adventurer Pass", "Adventurer Passes"));
+            Items.Add(new Weapon(ITEM_ID_RUSTY_SWORD, "Rusty Sword of Powah", "Rusty ass swords", 0, 6, 5));
+            Items.Add(new Item(ITEM_ID_RAT_TAIL, "Rat tail", "Rat tails", 1));
+            Items.Add(new Item(ITEM_ID_PIECE_OF_FUR, "Piece of fur", "Pieces of fur", 1));
+            Items.Add(new Item(ITEM_ID_SNAKE_FANG, "Snake fang", "Snake fangs", 1));
+            Items.Add(new Item(ITEM_ID_SNAKESKIN, "Snakeskin", "Snakeskins", 2));
+            Items.Add(new Weapon(ITEM_ID_CLUB, "Superclub", "Superclubs", 3, 10, 8));
+            Items.Add(new HealingPotion(ITEM_ID_HEALING_POTION, "Healing Potion", "Healing Potions", 5, 3));
+            Items.Add(new Item(ITEM_ID_SPIDER_FANG, "Spider fang", "Spider fangs", 2));
+            Items.Add(new Item(ITEM_ID_SPIDER_SILK, "Spider silk", "Spider silks", 2));
+            Items.Add(new Item(ITEM_ID_ADVENTURER_PASS, "Adventurer Pass", "Adventurer Passes", UNSELLABLE_ITEM_PRICE));
         }
 
         private static void PopulateMonsters()
@@ -105,6 +107,13 @@ namespace Engine
             Location home = new Location(LOCATION_ID_HOME, "Home", "Your house. It's fucking filthy my dude.");
 
             Location townSquare = new Location(LOCATION_ID_TOWN_SQUARE, "Town Square", "You see a fountain. Smells like pee.");
+
+            Vendor vendor = new Vendor("Bob The Catcher");
+
+            vendor.AddItemToInventory(ItemByID(ITEM_ID_RAT_TAIL), 5);
+            vendor.AddItemToInventory(ItemByID(ITEM_ID_PIECE_OF_FUR), 3);
+
+            townSquare.VendorPresent = vendor;
 
             Location alchemistHut = new Location(LOCATION_ID_ALCHEMIST_HUT, "Alchemist's Hut", "Some potions and weird ass plants surround you.")
             {
