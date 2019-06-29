@@ -210,7 +210,7 @@ namespace SuperAdventuRE
 
         private void btnTrade_Click(object sender, EventArgs e)
         {
-            TradingScreen tradingScreen = new TradingScreen(player);
+            TradingScreen tradingScreen = new TradingScreen(player, World.LocationByID(player.CurrentLocation.ID).VendorPresent);
             tradingScreen.StartPosition = FormStartPosition.CenterParent;
             tradingScreen.ShowDialog(this);
         }

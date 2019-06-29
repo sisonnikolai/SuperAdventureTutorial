@@ -14,7 +14,6 @@ namespace Engine
         private int gold;
         private int experiencePoints;
         private Location currentLocation;
-        private int expCap;
         private Monster currentMonster;
         #endregion
 

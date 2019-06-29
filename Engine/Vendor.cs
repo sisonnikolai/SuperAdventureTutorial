@@ -32,7 +32,7 @@ namespace Engine
                 //If item is present, increase by 1
                 item.Quantity += quantity;
             }
-            OnPropertyChanged("Inventory");
+            RaiseInventoryChangeEvent(itemToAdd);
         }
 
         public void RemoveItemFromInventory(Item itemToRemove, int quantity = 1)
@@ -58,8 +58,17 @@ namespace Engine
                 {
                     Inventory.Remove(item);
                 }
-                OnPropertyChanged("Inventory");
+                RaiseInventoryChangeEvent(itemToRemove);
             }
+        }
+
+        private void RaiseInventoryChangeEvent(Item item)
+        {
+            if (item is Weapon)
+                OnPropertyChanged("Weapons");
+
+            if (item is HealingPotion)
+                OnPropertyChanged("Potions");
         }
 
         private void OnPropertyChanged(string name)

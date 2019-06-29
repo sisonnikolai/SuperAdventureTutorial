@@ -14,10 +14,11 @@ namespace SuperAdventuRE
     public partial class TradingScreen : Form
     {
         private Player currentPlayer;
-
-        public TradingScreen(Player player)
+        private Vendor currentVendor;
+        public TradingScreen(Player player, Vendor vendor)
         {
             currentPlayer = player;
+            currentVendor = vendor;
 
             InitializeComponent();
 
@@ -132,8 +133,13 @@ namespace SuperAdventuRE
                 if (currentPlayer.Gold >= itemBeingBought.Price)
                 {
                     currentPlayer.AddItemToInventory(itemBeingBought);
+
                     currentPlayer.Gold -= itemBeingBought.Price;
+
+                    currentVendor.RemoveItemFromInventory(itemBeingBought);
+
                 }
+
                 else
                 {
                     MessageBox.Show($"You don't have enough gold to buy the {itemBeingBought.Name}");
@@ -158,10 +164,18 @@ namespace SuperAdventuRE
                 {
                     MessageBox.Show($"Unable to sell {itemBeingSold.Name}.");
                 }
+
+                else if (itemBeingSold.Equals(currentPlayer.CurrentWeapon) && currentPlayer.Weapons.Count == 1)
+                {
+                    MessageBox.Show($"Unable to sell your only weapon.");
+                }
+
                 else
                 {
                     //Remove one of these items from the inventory
                     currentPlayer.RemoveItemFromInventory(itemBeingSold);
+
+                    currentVendor.AddItemToInventory(itemBeingSold);
 
                     //Give the player gold
                     currentPlayer.Gold += itemBeingSold.Price;

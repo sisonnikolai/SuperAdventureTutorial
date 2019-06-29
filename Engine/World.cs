@@ -108,8 +108,7 @@ namespace Engine
 
             Location townSquare = new Location(LOCATION_ID_TOWN_SQUARE, "Town Square", "You see a fountain. Smells like pee.");
 
-            Vendor vendor = new Vendor("Bob The Catcher");
-
+            Vendor vendor = new Vendor("Bobby");
             vendor.AddItemToInventory(ItemByID(ITEM_ID_RAT_TAIL), 5);
             vendor.AddItemToInventory(ItemByID(ITEM_ID_PIECE_OF_FUR), 3);
             vendor.AddItemToInventory(ItemByID(ITEM_ID_HEALING_POTION), 5);
