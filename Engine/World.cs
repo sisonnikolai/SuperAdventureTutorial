@@ -112,6 +112,7 @@ namespace Engine
 
             vendor.AddItemToInventory(ItemByID(ITEM_ID_RAT_TAIL), 5);
             vendor.AddItemToInventory(ItemByID(ITEM_ID_PIECE_OF_FUR), 3);
+            vendor.AddItemToInventory(ItemByID(ITEM_ID_HEALING_POTION), 5);
 
             townSquare.VendorPresent = vendor;
 

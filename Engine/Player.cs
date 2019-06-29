@@ -14,7 +14,7 @@ namespace Engine
         private int gold;
         private int experiencePoints;
         private Location currentLocation;
-        
+        private int expCap;
         private Monster currentMonster;
         #endregion
 
@@ -28,6 +28,7 @@ namespace Engine
                 OnPropertyChanged("Gold");
             }
         }
+        
         public int ExperiencePoints
         {
             get { return experiencePoints; }
@@ -364,9 +365,7 @@ namespace Engine
             
             //Completely heal the player
             CurrentHitPoints = MaximumHitPoints;
-
-            //Update Hit Points in UI
-
+            
             //Does the location have a quest?
             if (newLocation.QuestAvailableHere != null)
             {
@@ -417,7 +416,7 @@ namespace Engine
                     //The player does not have the quest
 
                     //Display the messages
-                    RaiseMessage($"You receive the {newLocation.QuestAvailableHere.Name} quest." + Environment.NewLine);
+                    RaiseMessage($"You received the {newLocation.QuestAvailableHere.Name} quest." + Environment.NewLine);
                     RaiseMessage(newLocation.QuestAvailableHere.Description + Environment.NewLine);
                     RaiseMessage("To complete it, return with " + Environment.NewLine);
 
