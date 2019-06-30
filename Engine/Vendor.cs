@@ -32,7 +32,7 @@ namespace Engine
                 //If item is present, increase by 1
                 item.Quantity += quantity;
             }
-            RaiseInventoryChangeEvent(itemToAdd);
+            OnPropertyChanged("Inventory");
         }
 
         public void RemoveItemFromInventory(Item itemToRemove, int quantity = 1)
@@ -58,17 +58,21 @@ namespace Engine
                 {
                     Inventory.Remove(item);
                 }
-                RaiseInventoryChangeEvent(itemToRemove);
+                OnPropertyChanged("Inventory");
             }
         }
 
-        private void RaiseInventoryChangeEvent(Item item)
+        public static Vendor GetVendor()
         {
-            if (item is Weapon)
-                OnPropertyChanged("Weapons");
+            Vendor vendor = new Vendor("Bobby");
 
-            if (item is HealingPotion)
-                OnPropertyChanged("Potions");
+            var itemID1 = RandomNumberGenerator.NumberBetween(1, World.Items.Count);
+            var itemID2 = RandomNumberGenerator.NumberBetween(1, World.Items.Count);
+
+            vendor.AddItemToInventory(World.ItemByID(itemID1), 5);
+            vendor.AddItemToInventory(World.ItemByID(itemID2), 5);
+
+            return vendor;
         }
 
         private void OnPropertyChanged(string name)

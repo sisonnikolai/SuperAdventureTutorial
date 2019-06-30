@@ -152,6 +152,7 @@ namespace SuperAdventuRE
             //The first column of a dataagrid view has a ColumnIndex = 0
             //This is known as "zero-based" array/collection/list
             //If the player clicked the button column, we will sell an item from that row
+
             if (e.ColumnIndex == 4)
             {
                 //This gets the ID value of the item, from the hidden 1st column
@@ -159,15 +160,17 @@ namespace SuperAdventuRE
 
                 //Get the item object for the selected row
                 Item itemBeingSold = World.ItemByID(Convert.ToInt32(itemID));
+                var num = Convert.ToInt32(dgvMyItems.Rows[e.RowIndex].Cells[2].Value);
 
                 if (itemBeingSold.Price == World.UNSELLABLE_ITEM_PRICE)
                 {
                     MessageBox.Show($"Unable to sell {itemBeingSold.Name}.");
                 }
 
-                else if (itemBeingSold.Equals(currentPlayer.CurrentWeapon) && currentPlayer.Weapons.Count == 1)
+                else if (itemBeingSold is Weapon && currentPlayer.Weapons.Count == 1 && num == 1)
                 {
-                    MessageBox.Show($"Unable to sell your only weapon.");
+                    //MessageBox.Show($"Unable to sell your only weapon.");
+                    MessageBox.Show("YOU CAN'T SELL YOUR ONLY WEAPON!");
                 }
 
                 else
