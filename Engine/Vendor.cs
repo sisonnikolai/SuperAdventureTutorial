@@ -25,7 +25,7 @@ namespace Engine
             if(item == null)
             {
                 //If item is not in inventory, add by 1
-                Inventory.Add(new InventoryItem(itemToAdd, 1));
+                Inventory.Add(new InventoryItem(itemToAdd, quantity));
             }
             else
             {

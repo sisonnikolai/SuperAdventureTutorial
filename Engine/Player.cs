@@ -218,7 +218,7 @@ namespace Engine
                 if(item != null)
                 {
                     //Subtract the quantity
-                    RemoveItemFromInventory(item.Details, item.Quantity);
+                    RemoveItemFromInventory(item.Details, qci.Quantity);
                 }
             }
         }
