@@ -21,13 +21,19 @@ namespace SuperAdventuRE
         {
             InitializeComponent();
 
-            if (File.Exists(PLAYER_DATA_FILE_NAME))
+            player = PlayerDataMapper.CreateFromDatabase();
+
+            if (player == null)
             {
-                player = Player.CreatePlayerFromXmlString(File.ReadAllText(PLAYER_DATA_FILE_NAME));
-            }
-            else
-            {
-                player = Player.CreateDefaultPlayer();
+                if (File.Exists(PLAYER_DATA_FILE_NAME))
+                {
+                    player = Player.CreatePlayerFromXmlString(File.ReadAllText(PLAYER_DATA_FILE_NAME));
+                }
+                else
+                {
+                    player = Player.CreateDefaultPlayer();
+                }
+                //MessageBox.Show("Null");
             }
 
             //DataBindings - The databinding will connect to the Text property of the labels to the following properties of the player object
@@ -200,7 +206,9 @@ namespace SuperAdventuRE
 
         private void SuperAdventure_FormClosing(object sender, FormClosingEventArgs e)
         {
-            File.WriteAllText(PLAYER_DATA_FILE_NAME, player.ToXmlString());
+           // File.WriteAllText(PLAYER_DATA_FILE_NAME, player.ToXmlString());
+
+            PlayerDataMapper.SaveToDatabase(player);
         }
 
         private void cboWeapons_SelectedIndexChange(object sender, EventArgs e)
