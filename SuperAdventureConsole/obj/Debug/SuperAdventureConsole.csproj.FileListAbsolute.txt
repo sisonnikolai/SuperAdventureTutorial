@@ -1,0 +1,10 @@
+C:\Users\Nikolai\source\repos\SuperAdventuRE\SuperAdventureConsole\bin\Debug\SuperAdventureConsole.exe.config
+C:\Users\Nikolai\source\repos\SuperAdventuRE\SuperAdventureConsole\bin\Debug\SuperAdventureConsole.exe
+C:\Users\Nikolai\source\repos\SuperAdventuRE\SuperAdventureConsole\bin\Debug\SuperAdventureConsole.pdb
+C:\Users\Nikolai\source\repos\SuperAdventuRE\SuperAdventureConsole\bin\Debug\Engine.dll
+C:\Users\Nikolai\source\repos\SuperAdventuRE\SuperAdventureConsole\bin\Debug\Engine.pdb
+C:\Users\Nikolai\source\repos\SuperAdventuRE\SuperAdventureConsole\obj\Debug\SuperAdventureConsole.csprojAssemblyReference.cache
+C:\Users\Nikolai\source\repos\SuperAdventuRE\SuperAdventureConsole\obj\Debug\SuperAdventureConsole.csproj.CoreCompileInputs.cache
+C:\Users\Nikolai\source\repos\SuperAdventuRE\SuperAdventureConsole\obj\Debug\SuperAdventureConsole.csproj.CopyComplete
+C:\Users\Nikolai\source\repos\SuperAdventuRE\SuperAdventureConsole\obj\Debug\SuperAdventureConsole.exe
+C:\Users\Nikolai\source\repos\SuperAdventuRE\SuperAdventureConsole\obj\Debug\SuperAdventureConsole.pdb

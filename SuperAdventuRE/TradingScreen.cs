@@ -160,6 +160,7 @@ namespace SuperAdventuRE
 
                 //Get the item object for the selected row
                 Item itemBeingSold = World.ItemByID(Convert.ToInt32(itemID));
+
                 var num = Convert.ToInt32(dgvMyItems.Rows[e.RowIndex].Cells[2].Value);
 
                 if (itemBeingSold.Price == World.UNSELLABLE_ITEM_PRICE)
@@ -178,7 +179,7 @@ namespace SuperAdventuRE
                     //Remove one of these items from the inventory
                     currentPlayer.RemoveItemFromInventory(itemBeingSold);
 
-                    currentVendor.AddItemToInventory(itemBeingSold);
+                    currentVendor.AddItemToInventory(itemBeingSold, 1);
 
                     //Give the player gold
                     currentPlayer.Gold += itemBeingSold.Price;
