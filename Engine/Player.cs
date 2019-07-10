@@ -167,12 +167,15 @@ namespace Engine
         {
             if(location.ItemRequiredToEnter != null)
             {
-                //There is no required item for this location, so return 'true'
+                //See if the player has the required item in their inventory
+                Inventory.Any(ii => ii.Details.ID == location.ItemRequiredToEnter.ID);
                 return true;
             }
-
-            //See if the player has the required item in their inventory
-            return Inventory.Any(ii => ii.Details.ID == location.ItemRequiredToEnter.ID);
+            else
+            {
+                //There is no required item for this location, so return 'true'
+                return false;
+            }
         }
 
         public bool HasThisQuest (Quest quest)

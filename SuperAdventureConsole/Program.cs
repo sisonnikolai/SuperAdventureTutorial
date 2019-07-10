@@ -390,14 +390,14 @@ namespace SuperAdventureConsole
 
             if(player == null)
             {
-                if(File.Exists(PLAYER_DATA_FILE_NAME))
-                {
-                    player = Player.CreatePlayerFromXmlString(File.ReadAllText(PLAYER_DATA_FILE_NAME));
-                }
-                else
-                {
+                //if(File.Exists(PLAYER_DATA_FILE_NAME))
+                //{
+                //    player = Player.CreatePlayerFromXmlString(File.ReadAllText(PLAYER_DATA_FILE_NAME));
+                //}
+                //else
+                //{
                     player = Player.CreateDefaultPlayer();
-                }
+                //}
             }
         }
     }
