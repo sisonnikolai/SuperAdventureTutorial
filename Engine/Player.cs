@@ -165,7 +165,7 @@ namespace Engine
 
         public bool PlayerDoesNotHaveTheItemRequiredToEnter (Location location)
         {
-            if(location.ItemRequiredToEnter != null)
+            if(location.ItemRequiredToEnter == null)
             {
                 //There is no required item for this location, so return 'true'
                 return true;
@@ -364,7 +364,7 @@ namespace Engine
         public void MoveTo(Location location)
         {
             //Does the location have any required items
-            if (PlayerDoesNotHaveTheItemRequiredToEnter(location))
+            if (!PlayerDoesNotHaveTheItemRequiredToEnter(location))
             {
                 RaiseMessage($"You must have a {location.ItemRequiredToEnter.Name} to enter this location." +
                     Environment.NewLine);
